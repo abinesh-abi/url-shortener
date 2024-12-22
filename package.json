@@ -13,19 +13,24 @@
     "@types/express": "^5.0.0",
     "@types/express-session": "^1.18.1",
     "@types/jsonwebtoken": "^9.0.7",
+    "@types/morgan": "^1.9.9",
     "@types/node": "^22.10.2",
     "@types/passport": "^1.0.17",
     "@types/passport-google-oauth20": "^2.0.16",
+    "@types/shortid": "^2.2.0",
     "typescript": "^5.7.2"
   },
   "dependencies": {
     "express": "^5.0.1",
     "express-session": "^1.18.1",
+    "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.2",
+    "morgan": "^1.10.0",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
-    "passport-jwt": "^4.0.1"
+    "passport-jwt": "^4.0.1",
+    "shortid": "^2.2.16"
   },
   "type": "module"
 }

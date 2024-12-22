@@ -8,6 +8,7 @@ import { authRouter } from "./routes/authRouter";
 import connectDB from "./config/db";
 import { useGoogleStrategy } from "./config/passport.config";
 import { apiRouter } from "./routes/apiRouter";
+import morgan from 'morgan'
 
 // Create a new express application instance
 const app = express();
@@ -33,6 +34,7 @@ useGoogleStrategy();
 app.use(express.json()) //body parser
 app.use(passport.initialize()); 
 app.use(passport.session());
+app.use(morgan('dev'))
 
 // routers
 app.use("/google/", googleAuthRouter);
