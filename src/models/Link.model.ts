@@ -1,33 +1,30 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-export interface ILink extends Document {
+export interface ILink  {
   originalUrl: string;
-  generatedUrl: string;
+  generatedUrl?: string;
+  topic?: string;
   GID: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-const linkSchema = new Schema({
-  originalLink: {
-    type: String,
-    unique: true,
-    required: true,
+const linkSchema = new Schema<ILink>(
+  {
+    originalUrl: {
+      type: String,
+      // unique: true,
+      required: true,
+    },
+    generatedUrl: String,
+    GID: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    topic: String,
   },
-  generatedLink: String,
-  GID: {
-    type: String,
-    unique: true,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  { timestamps: true }
+);
 
 export const Link = mongoose.model<ILink>("Link", linkSchema);

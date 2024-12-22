@@ -1,5 +1,5 @@
 const port = process.env.PORT || 3000;
-const baseURL = `http://127.0.0.1:${port}`;
+const baseURL = process.env.BASE_URL
 
 const CONFIG = {
   BASE_URL: baseURL,
