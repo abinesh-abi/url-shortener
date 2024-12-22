@@ -30,13 +30,14 @@ connectDB();
 // authentication strategy
 useGoogleStrategy();
 
-app.use(passport.initialize());
+app.use(express.json()) //body parser
+app.use(passport.initialize()); 
 app.use(passport.session());
 
 // routers
 app.use("/google/", googleAuthRouter);
 app.use("/auth", authRouter);
-app.use("/api", apiRouter);
+app.use("/api",jwtAuth, apiRouter);
 
 
 // Start the Express server

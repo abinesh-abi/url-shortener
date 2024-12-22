@@ -1,8 +1,6 @@
-import express, { Router, Request, Response, NextFunction } from "express";
-import CONFIG from "../config/config";
+import express, { Router } from "express";
+import { createLink } from "../controller/apiController";
 
 export const apiRouter: Router = express.Router();
 
-apiRouter.post("/shorten", (req: Request, res: Response) => {
-  res.json(({'msg':'test'}))
-});
+apiRouter.post("/shorten",createLink);
