@@ -1,6 +1,4 @@
 import express, { Router, Request, Response, NextFunction } from "express";
-import passport from "passport";
-import jwt from "jsonwebtoken";
 import CONFIG from "../config/config";
 
 export const authRouter: Router = express.Router();

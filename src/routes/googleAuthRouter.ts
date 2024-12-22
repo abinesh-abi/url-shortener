@@ -20,8 +20,9 @@ googleAuthRouter.get(
       process.env.JWT_SECRET || '',
       { expiresIn: "1h" },
     );
-    res.cookie('jwtToken', token);
-    res.redirect(CONFIG.BASE_URL)
+    res.json({token:token})
+    // res.cookie('jwtToken', token);
+    // res.redirect(CONFIG.BASE_URL)
   }
 );
 

@@ -12,13 +12,13 @@ export const jwtAuth: Middleware = (req, res, next) => {
     return res
       .json({ msg: "Authorization token should start with Bearer" })
       .status(401);
-  } else {
-  }
+  } 
   const jwtToken = token?.substring(7, token.length);
   try {
     if (jwtToken) {
       const decoded = jwt.verify(jwtToken, CONFIG.JWT_SECRET || "");
       req.user = decoded;
+      next()
     }
   } catch (err) {
     return res.json({ msg: "Invalid token" }).status(401);

@@ -7,6 +7,7 @@ import { jwtAuth } from "./middleware/jwtAuth";
 import { authRouter } from "./routes/authRouter";
 import connectDB from "./config/db";
 import { useGoogleStrategy } from "./config/passport.config";
+import { apiRouter } from "./routes/apiRouter";
 
 // Create a new express application instance
 const app = express();
@@ -35,10 +36,8 @@ app.use(passport.session());
 // routers
 app.use("/google/", googleAuthRouter);
 app.use("/auth", authRouter);
+app.use("/api", apiRouter);
 
-app.get("/", jwtAuth, (req: Request, res: Response) => {
-  res.json({ message: "Welcome to the Express + TypeScript Server!" });
-});
 
 // Start the Express server
 app.listen(port, () => {
