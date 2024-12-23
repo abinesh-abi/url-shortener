@@ -18,7 +18,7 @@ googleAuthRouter.get(
     const token = jwt.sign(
       { user: req.user },
       process.env.JWT_SECRET || '',
-      { expiresIn: "1d" },
+      // { expiresIn: "1d" },
     );
     res.json({token:token})
     // res.cookie('jwtToken', token);
