@@ -5,6 +5,7 @@ import { IData, IDevice, IOS } from "ua-parser-js";
 export interface IClicks {
   user: mongoose.Types.ObjectId;
   link: mongoose.Types.ObjectId;
+  topic?: string;
   os: IOS;
   device: IDevice;
   ip_address: string;
@@ -33,6 +34,7 @@ const clickSchema = new Schema<IClicks>(
       model: String,
       vendor: String,
     },
+    topic: String,
     ip_address: String,
   },
   { timestamps: true }

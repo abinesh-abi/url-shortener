@@ -9,7 +9,7 @@ export default {
   getUserByEmail: async (email: string): Promise<IUser | null> => {
     return await User.findOne({ email });
   },
-  getUserDetails: async (userId: string) => {
+  getAnalyticsOverall: async (userId: string) => {
     return await User.aggregate([
       { $match: { _id: new mongoose.Types.ObjectId(userId) } },
       {
@@ -133,5 +133,5 @@ export default {
         }
       }
     ])
-  }
+  },
 }

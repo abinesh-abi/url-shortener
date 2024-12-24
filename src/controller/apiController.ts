@@ -62,10 +62,12 @@ export const getLinkById = async (req: Request, res: Response) => {
     const clickData: IClicks = {
       user: data.user,
       link: data._id,
+      topic:data.topic,
       ip_address: req.ip || '',
       device: parser.getDevice(),
       os: parser.getOS()
     }
+    console.log(clickData)
     await clickServices.createClick(clickData)
 
     res.json(data);
@@ -80,7 +82,7 @@ export const getOverallAnalytics = async (req: Request, res: Response) => {
   try {
     const user: any = req?.user
     const userId: string = user?.user?._id
-    const data =await userService.getUserDetails(userId)
+    const data = await userService.getAnalyticsOverall(userId)
 
     res.json(data)
   } catch (error) {
@@ -88,3 +90,24 @@ export const getOverallAnalytics = async (req: Request, res: Response) => {
     res.status(500).json({ msg: "Internal Server Error" });
   }
 }
+
+
+export const getAnalyticsByTopic = async (req: Request, res: Response) => {
+  try {
+    const topic = req.params.topic;
+    if (!topic) {
+      res.status(400).json({ error: "Invalid Params" })
+      return
+    }
+
+    const user: any = req?.user
+    const userId: string = user?.user?._id
+    const data = await apiServices.getAnalyticsByTopic(topic, userId)
+
+    res.json(data)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ msg: "Internal Server Error" });
+  }
+}
+
