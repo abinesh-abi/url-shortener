@@ -1,8 +1,8 @@
 import passport from "passport";
 import passportGoogle from "passport-google-oauth20";
 import CONFIG from "./config";
-import { getUserByEmail, insertUser } from "../services/userService";
 import User, { IUser } from "../models/user.model";
+import userService from "../services/userService";
 
 const GoogleStrategy = passportGoogle.Strategy;
 
@@ -18,7 +18,7 @@ export function useGoogleStrategy() {
         try {
           if (!profile._json.email) throw "User does not have email";
 
-          let user = await getUserByEmail(profile._json.email);
+          let user = await userService.getUserByEmail(profile._json.email);
 
           if (user) {
             done(null, user);
@@ -27,7 +27,7 @@ export function useGoogleStrategy() {
               username: profile._json.name ,
               email: profile._json.email,
             };
-            user = await insertUser(newUser);
+            user = await userService.insertUser(newUser);
             done(null, user);
           }
         } catch (err: any) {

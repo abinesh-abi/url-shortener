@@ -6,6 +6,6 @@ export default {
     return newUrl.save();
   },
   getLinkByGid(GID: string) {
-    return Link.findOne({ GID },{originalUrl:1});
+    return Link.findOne({ GID }, { originalUrl: 1, user: 1 });
   },
 };

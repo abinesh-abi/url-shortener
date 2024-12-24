@@ -3,6 +3,7 @@ import mongoose, { Schema, Document } from "mongoose";
 import { IData, IDevice, IOS } from "ua-parser-js";
 
 export interface IClicks {
+  user: mongoose.Types.ObjectId;
   link: mongoose.Types.ObjectId;
   os: IOS;
   device: IDevice;
@@ -13,6 +14,11 @@ export interface IClicks {
 
 const clickSchema = new Schema<IClicks>(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     link: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Link",
